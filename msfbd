@@ -1,8 +1,68 @@
 #!/bin/bash
+#
+# Author: Lukebob
 
 ipadd=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 port=$(shuf -i 2000-65000 -n 1)
 port1=$port
+
+fname(){
+echo
+echo
+echo "#################"
+echo "#    Peeper     #"
+echo "#################"
+echo
+echo
+echo "Fast Person Lookup"
+echo
+echo
+echo
+echo
+echo -n "First name?: "
+read fname
+echo
+
+if [ -z $fname ]; then
+  echo "No First name chosen"
+  fname
+else
+  lname
+fi
+}
+
+lname(){
+echo
+echo -n "Last name?: "
+read lname
+echo
+
+if [ -z $lname ]; then
+  echo "No Last name chosen"
+  lname
+else
+  connct
+fi
+}
+
+
+connct(){
+
+firefox http://www.411.com/name/$fname-$lname/ &
+sleep 1
+firefox http://www.cvgadget.com/person/$fname/$lname &
+sleep 1
+firefox "http://www.peekyou.com/${fname}_${lname}" &
+sleep 1
+firefox "https://pipl.com/search/?q=$fname+$lname&l=&sloc=&in=6" &
+sleep 1
+firefox http://www.spokeo.com/$fname-$lname &
+sleep 1
+firefox http://www.zabasearch.com/people/$fname+$lname/ &
+sleep 1
+firefox "http://people.yellowpages.com/whitepages?first=$fname&last=$lname&zip=&state=&site=66"
+}
+
 
 boostno(){
  interface2=$(ifconfig | grep wlan | cut -f 1 -d ':')
@@ -296,5 +356,8 @@ case $1 in
   ;;
   boostno)
   boostno
+  ;;
+  peeper)
+  fname
   ;;
 esac
