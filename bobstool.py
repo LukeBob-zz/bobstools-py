@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Author: bob
+# Author: Lukebob
 
 import time
 import sys
@@ -20,6 +20,9 @@ tkimage = ImageTk.PhotoImage(background)
 var1=Tkinter.Label(top,image = tkimage)
 var1.place(x=0, y=0, relwidth=1, relheight=1)
 top.wm_title("Bob's Tools")
+
+def peeper():
+  os.system("msfbd peeper")
 
 def boostno():
   os.system("msfbd boostno")
@@ -203,6 +206,14 @@ mb13.config(background="red")
 mb13.menu.add_checkbutton(label="Card Boost", command=boost)
 mb13.menu.add_checkbutton(label="Card Restore", command=boostno)
 
+mb14 = Menubutton(top, text="Peeper", relief="raised", font='helv36', width=30)
+mb14.grid(row=5, column=0)
+mb14.menu = Menu (mb14, tearoff = 0)
+mb14["menu"] = mb14.menu
+mb14.config(background="blue")
+mb14.menu.add_checkbutton(label="Peeper", command=peeper)
+
+
+
 quick_check()
 top.mainloop()
-
