@@ -45,7 +45,7 @@ class Scanner(threading.Thread):
 
     def run(self):
         try:
-            # connect to the given host:port
+            # connect to the host:port
             self.sock.connect((self.host, self.port))
             print "%s: %d OPEN" %(self.host, self.port)
             self.sock.close()
@@ -53,7 +53,7 @@ class Scanner(threading.Thread):
 
 class pyScan:
     def __init__(self, args=[]):
-        # arguments vector
+        # arguments 
         self.args = args
         # start port and end port
         self.start, self.stop = 1, 10000
