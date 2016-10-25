@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# TCP FLOOD TOOL
+# UDP FLOOD TOOL
 #
 # Author: LukeBob
 
