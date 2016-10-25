@@ -19,5 +19,5 @@ experiment kali python gui for making a few tasks simple
 
 * ```./BobDos.py <Target-host> <start-Port> <end-port>```
 
-**the ports are Specified for the portscan before the actual attack, this gives us a list of open ports. You DONT need to give ports.**
+**the ports are Specified for the portscan before the actual attack, this gives us a list of open ports. You DON'T need to give ports.**
 
