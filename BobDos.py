@@ -56,7 +56,7 @@ class pyScan:
         # arguments 
         self.args = args
         # start port and end port
-        self.start, self.stop = 1, 10000
+        self.start, self.stop = 1, 10001
         # host name
         self.host = ""
 
