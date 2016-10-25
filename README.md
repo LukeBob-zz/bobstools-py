@@ -15,7 +15,7 @@ experiment kali python gui for making a few tasks simple
 
 * ```chmod 755 BobDos.py```
 
-** then run it with; **
+**then run it with;**
 
 * ```./BobDos.py <Target-host> <start-Port> <end-port>```
 
