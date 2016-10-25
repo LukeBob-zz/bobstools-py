@@ -1,4 +1,8 @@
 #!/usr/bin/python
+#
+# UDP Testing tool
+#
+# Author: LukeBob
 
 import threading
 from datetime import datetime
