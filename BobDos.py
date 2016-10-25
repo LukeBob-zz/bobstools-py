@@ -106,7 +106,7 @@ def Flood():
         print split
         length = int(raw_input("How many Packets Would you like to send?: "))
         print split
-        bytes = random._urandom(65000)
+        bytes = random._urandom(1024)
         #MESSAGE = raw_input("Message?: ")
         print ""
         print split
