@@ -1,4 +1,6 @@
 #!/usr/bin/python
+#
+# Author: LukeBob
 
 import threading
 from datetime import datetime
@@ -7,8 +9,6 @@ import time
 import sys, traceback
 import socket
 import random
-import sys
-MAX_THREADS = 50
 
 
 
@@ -22,6 +22,7 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+MAX_THREADS = 50
 split = colors.BOLD + "===========================================" + colors.ENDC
 
 def usage():
