@@ -1,7 +1,7 @@
 # bobstools-py
 experiment kali python gui for making a few tasks simple
 
-## Setup ##
+## bobstool Setup ##
 
 **just extract the folder and place it anywere on the linux system. Then change python file's permissions;**
 
@@ -10,3 +10,14 @@ experiment kali python gui for making a few tasks simple
 **then you can run it with;**
 
 * ```./bobstool.py```
+
+## BobDos Setup ##
+
+* ```chmod 755 BobDos.py```
+
+** then run it with; **
+
+* ```./BobDos.py <Target-host> <start-Port> <end-port>```
+
+the ports are for the portscan before the actual attack, this gives us a list of open ports.
+Although you do not need to specify any ports if need be.
