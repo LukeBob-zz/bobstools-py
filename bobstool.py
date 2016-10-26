@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Author: Lukebob
+# Author: bob
 
 import time
 import sys
@@ -43,7 +43,7 @@ def monitoron():
   os.system("msfbd monitor")
 
 def sparta():
-  os.system("Sparta")
+  os.system("gnome-terminal -e sparta &")
 
 def shutdown():
   os.system("shutdown now")
@@ -76,10 +76,10 @@ def quick_check():
   os.system("chmod +x msfbd && cp msfbd /usr/bin/ >> /dev/null")
 
 def sqlmap():
-  os.system("sqlmap --wizard")
+  os.system("gnome-terminal -e sqlmap --wizard &")
 
 def setoolkit():
-  os.system("setoolkit")
+  os.system("gnome-terminal -e setoolkit &")
 
 def passgen():
   os.system("echo -n $(tput setaf 4)$(tput bold)'\nPassword length ?:' $(tput sgr0) && read length && echo '\n' && echo '\n\tGenerating\n' && sleep 1 && password=$(dd if=/dev/urandom bs=1 count=$length 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev) && echo $(tput bold)$(tput setaf 2) $password $(tput sgr0)")
