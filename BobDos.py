@@ -115,7 +115,7 @@ class pyScan:
             print "Exiting..."
         except Exception:
             traceback.print_exc(file=sys.stdout)
-        sys.exit(1)
+        sys.exit(0)
 
                     
 def Flood():
@@ -162,4 +162,4 @@ if __name__ == '__main__':
     print "Exiting..."
   except Exception:
     traceback.print_exc(file=sys.stdout)
-  sys.exit(1)
+  sys.exit(0)
