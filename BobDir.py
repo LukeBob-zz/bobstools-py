@@ -76,27 +76,19 @@ try:
         print split
         print '\n'
         print colors.BOLD + 'Starting the buster..' + colors.ENDC
+        
+        
         numlines = sum(1 for line in open(files))
         half = numlines / 2           
         splitLen = half        
         outputBase = 'output' 
-
-       
-        
         input = open(files, 'r').read().split('\n')
-
         at = 1
         for lines in range(0, len(input), splitLen):
-          
             outputData = input[lines:lines+splitLen]
-
-       
-          
             output = open(outputBase + str(at) + '.txt', 'w')
             output.write('\n'.join(outputData))
             output.close()
-
-        
             at += 1
        
     if 'http' in host:
