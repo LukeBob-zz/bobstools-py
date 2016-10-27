@@ -80,9 +80,6 @@ try:
         half = numlines / 2           
         splitLen = half        
         outputBase = 'output' 
-
-       
-        
         input = open(files, 'r').read().split('\n')
 
         at = 1
