@@ -55,12 +55,12 @@ try:
         check1 = os.path.exists(files)
 
     if check1 == False:
-       print '\n'
-       print split
-       print colors.BOLD + colors.FAIL + " ERROR:" + colors.ENDC + colors.BOLD + "  Cant find Wordlist: " + files + colors.ENDC
-       print split
-       print '\n'
-       sys.exit(0)
+        print '\n'
+        print split
+        print colors.BOLD + colors.FAIL + " ERROR:" + colors.ENDC + colors.BOLD + "  Cant find Wordlist: " + files + colors.ENDC
+        print split
+        print '\n'
+        sys.exit(0)
     else:
         print ""
         print colors.BOLD + colors.OKBLUE + "Wordlist", colors.ENDC + colors.BOLD + "==> ", colors.BOLD + colors.OKGREEN + files + colors.ENDC
@@ -78,31 +78,13 @@ try:
         half = numlines / 4           
         splitLen = half        
         outputBase = 'output' 
-
-       
-        
         input = open(files, 'r').read().split('\n')
-
         at = 1
         for lines in range(0, len(input), splitLen):
-          
             outputData = input[lines:lines+splitLen]
-
-       
-          
-            output = open(outputBase + str(at) + '.txt', 'w')
-            output.write('\n'.join(outputData))
-            output.close()
-
-        
-            at += 1
-       
-            
-         
-
-    
-
-  
+                output = open(outputBase + str(at) + '.txt', 'w')
+                output.write('\n'.join(outputData))
+                output.close()
 
     if 'http' in host:
         time.sleep(0.01)
