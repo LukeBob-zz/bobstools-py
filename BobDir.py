@@ -10,7 +10,6 @@ import requests
 import time
 import sys, traceback
 import os
-import time
 import subprocess
 import threading
 from threading import Thread
