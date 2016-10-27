@@ -350,4 +350,4 @@ except Exception:
 sys.exit(0)
    
 print "thread finished...exiting"    
-  
+sys.exit(0)  
