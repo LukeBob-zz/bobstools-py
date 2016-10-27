@@ -99,13 +99,6 @@ try:
         
             at += 1
        
-            
-         
-
-    
-
-  
-
     if 'http' in host:
         time.sleep(0.01)
         if host.endswith('/') == False:
