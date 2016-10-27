@@ -75,11 +75,14 @@ try:
         print ""
         print split
         print '\n'
-        print 'Starting the buster..'
+        print colors.BOLD + 'Starting the buster..' + colors.ENDC
         numlines = sum(1 for line in open(files))
         half = numlines / 2           
         splitLen = half        
         outputBase = 'output' 
+
+       
+        
         input = open(files, 'r').read().split('\n')
 
         at = 1
@@ -192,7 +195,7 @@ try:
             thread1.start()
             thread2.start()
 
-            print "thread finished...exiting"
+            
         except KeyboardInterrupt:
             print '\n'
             print smallSplit 
@@ -217,5 +220,5 @@ except Exception:
     traceback.print_exc(file=sys.stdout)
 sys.exit(0)
    
-    
+print "thread finished...exiting"    
   
