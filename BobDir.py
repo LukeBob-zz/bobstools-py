@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 ########################################################
 #            Author: LukeBob                           #
 #                                                      #
@@ -10,6 +12,7 @@ import requests
 import time
 import sys, traceback
 import os
+import time
 import subprocess
 import threading
 from threading import Thread
@@ -22,6 +25,9 @@ class colors:
     UNDERLINE = '\033[4m'
     OKBLUE = '\033[94m'
 
+list1 = []
+list2 = []
+MAX_THREADS = 20
 subprocess.call('clear', shell=True)
 smallSplit = colors.BOLD + colors.OKBLUE + '============================' + colors.ENDC
 split = colors.BOLD + colors.OKBLUE + '==================================================================================' + colors.ENDC
@@ -74,13 +80,31 @@ try:
         half = numlines / 4           
         splitLen = half        
         outputBase = 'output' 
+
+       
+        
         input = open(files, 'r').read().split('\n')
+
         at = 1
         for lines in range(0, len(input), splitLen):
+          
             outputData = input[lines:lines+splitLen]
-                output = open(outputBase + str(at) + '.txt', 'w')
-                output.write('\n'.join(outputData))
-                output.close()
+
+       
+          
+            output = open(outputBase + str(at) + '.txt', 'w')
+            output.write('\n'.join(outputData))
+            output.close()
+
+        
+            at += 1
+       
+            
+         
+
+    
+
+  
 
     if 'http' in host:
         time.sleep(0.01)
@@ -102,7 +126,7 @@ try:
     print '\n'
     print smallSplit
     
-    t1 = datetime.now()
+   
     out1 = open('output1.txt')
     out2 = open('output2.txt')
     out3 = open('output3.txt')
@@ -139,7 +163,6 @@ try:
             for i in out2.readlines():
                 r = requests.get(host + i[:-1])
                 item = r.status_code
-        
                 if item == 200:
                     print '\n'
                     print colors.BOLD + "Directory: " + host + i, "    ==> " + colors.OKGREEN + "Found" + colors.ENDC + colors.BOLD + " 200 Accepted" + colors.ENDC
@@ -165,7 +188,6 @@ try:
             for i in out3.readlines():
                 r = requests.get(host + i[:-1])
                 item = r.status_code
-        
                 if item == 200:
                     print '\n'
                     print colors.BOLD + "Directory: " + host + i, "    ==> " + colors.OKGREEN + "Found" + colors.ENDC + colors.BOLD + " 200 Accepted" + colors.ENDC
@@ -191,7 +213,6 @@ try:
             for i in out4.readlines():
                 r = requests.get(host + i[:-1])
                 item = r.status_code
-        
                 if item == 200:
                     print '\n'
                     print colors.BOLD + "Directory: " + host + i, "    ==> " + colors.OKGREEN + "Found" + colors.ENDC + colors.BOLD + " 200 Accepted" + colors.ENDC
@@ -211,7 +232,7 @@ try:
                     time.sleep(10)
         except:
             pass
-
+    t1 = datetime.now()
     a = 0
     while 1:
         try:
@@ -251,64 +272,3 @@ sys.exit(0)
    
 print "thread finished...exiting"    
 sys.exit(0) 
-t colors.BOLD + "Directory: " + host + i, "    ==> " + colors.FAIL + "Found" + colors.ENDC + colors.BOLD + " 429 Too Many Requests" + colors.ENDC
-                    print '\n'
-                    time.sleep(10)
-        except KeyboardInterrupt:
-            print '\n'
-            print smallSplit 
-            print colors.BOLD + colors.FAIL + "Shutdown requested...exiting" + colors.ENDC
-            print smallSplit
-            print '\n'
-        except Exception:
-            traceback.print_exc(file=sys.stdout)
-    
-    def thready2():
-        try:
-            for i in out2.readlines():
-                r = requests.get(host + i[:-1])
-                item = r.status_code
-                if item == 200:
-                    print '\n'
-                    print colors.BOLD + "Directory: " + host + i, "    ==> " + colors.OKGREEN + "Found" + colors.ENDC + colors.BOLD + " 200 Accepted" + colors.ENDC
-                    print '\n'
-                elif item == 403:
-                    print '\n'
-                    print colors.BOLD + "Directory: " + host + i, "    ==> " + colors.OKGREEN + "Found" + colors.ENDC + colors.BOLD + " 403 Forbidden" + colors.ENDC
-                    print '\n'
-                elif item == 401:
-                    print '\n'
-                    print colors.BOLD + "Directory: " + host + i, "    ==> " + colors.OKGREEN + "Found" + colors.ENDC + colors.BOLD + " 401 Unauthorized" + colors.ENDC
-                    print '\n'
-                elif item == 429:
-                    print '\n'
-                    print colors.BOLD + "Directory: " + host + i, "    ==> " + colors.FAIL + "Found" + colors.ENDC + colors.BOLD + " 429 Too Many Requests" + colors.ENDC
-                    print '\n'
-                    time.sleep(10)
-        except KeyboardInterrupt:
-            print '\n'
-            print smallSplit 
-            print colors.BOLD + colors.FAIL + "Shutdown requested...exiting" + colors.ENDC
-            print smallSplit
-            print '\n'
-        except Exception:
-            traceback.print_exc(file=sys.stdout)
-        sys.exit(0)
-
-   
-    t2 = datetime.now()
-    total = t2 - t1 
-    print "complete in: ", total
-    subprocess.call('rm output*.txt', shell=True)
-except KeyboardInterrupt:
-    print '\n'
-    print smallSplit 
-    print colors.BOLD + colors.FAIL + "Shutdown requested...exiting" + colors.ENDC
-    print smallSplit
-    print '\n'
-except Exception:
-    traceback.print_exc(file=sys.stdout)
-sys.exit(0)
-   
-print "thread finished...exiting"    
-sys.exit(0)  
