@@ -97,14 +97,7 @@ try:
             output.close()
 
         
-            at += 1
-       
-            
-         
-
-    
-
-  
+            at += 1                   
 
     if 'http' in host:
         time.sleep(0.01)
