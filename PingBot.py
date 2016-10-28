@@ -1,8 +1,10 @@
 #!/usr/bin/python
 #
 # Author: LukeBob
-#
+# text bot, Lets you know when your server goes down
 # Can be run on both windows and linux systems.
+# requires twilio account and pip install twilio
+#
 #
 # Windows: PingBot.py , however on windows you will need the cmd prompt open at all times to keep the script running.
 #
@@ -17,6 +19,22 @@ import sys
 ACCSID = 'AC'  # Account SID
 AUTHTOK = ''   # Auth Token
 name = os.name
+
+if name == 'nt':
+    windows = print('''        ###################
+        #                 #
+        # PingBot Windows #
+        #                 #
+        ###################''')
+
+else:
+    Linux = print('''        ###################
+        #                 #
+        # PingBot Linux   #
+        #                 #
+        ###################''')
+
+
 
 
 if name == 'nt':
