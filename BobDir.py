@@ -295,23 +295,6 @@ t colors.BOLD + "Directory: " + host + i, "    ==> " + colors.FAIL + "Found" + c
             traceback.print_exc(file=sys.stdout)
         sys.exit(0)
 
-    while 1:
-        try:
-            thread1 = Thread(target = thready)
-            thread2 = Thread(target = thready2)
-            thread1.start()
-            thread2.start()
-            sys.exit(0)
-            
-        except KeyboardInterrupt:
-            print '\n'
-            print smallSplit 
-            print colors.BOLD + colors.FAIL + "Shutdown requested...exiting" + colors.ENDC
-            print smallSplit
-            print '\n'
-        except Exception:
-            traceback.print_exc(file=sys.stdout)
-        sys.exit(0)
    
     t2 = datetime.now()
     total = t2 - t1 
