@@ -2,7 +2,7 @@
 #
 # Author: LukeBob
 #
-#
+# Run with: nohup python test.py &
 import os
 import time
 from twilio.rest import TwilioRestClient
