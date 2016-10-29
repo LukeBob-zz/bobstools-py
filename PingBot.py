@@ -8,7 +8,7 @@
 #
 # Windows: PingBot.py , however on windows you will need the cmd prompt open at all times to keep the script running.
 #
-# Linux: Run with: nohup python PingBot.py &
+# Linux: Run with: chmod +x PingBot.py && ./PingBot.py & ,  to run as deamon, or just ./PingBot.py 
 
 
 import os
