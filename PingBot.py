@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #
 # Author: LukeBob
-# text bot, Lets you know when your server goes down
+# text bot, Lets you know when your server goes down.
 # Can be run on both windows and linux systems.
 # requires twilio account and pip install twilio, twilio free https://www.twilio.com
 #
