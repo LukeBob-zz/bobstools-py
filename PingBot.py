@@ -21,19 +21,19 @@ AUTHTOK = ''   # Auth Token
 name = os.name
 
 if name == 'nt':
-    windows = print('''        ###################
+    windows = ('''        ###################
         #                 #
         # PingBot Windows #
         #                 #
         ###################''')
-
+    print(windows)
 else:
-    Linux = print('''        ###################
+    Linux = ('''        ###################
         #                 #
         # PingBot Linux   #
         #                 #
         ###################''')
-
+    print(Linux)
 
 
 
