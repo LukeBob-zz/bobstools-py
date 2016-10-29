@@ -6,9 +6,9 @@
 # requires twilio account and pip install twilio, twilio free https://www.twilio.com
 #
 #
-# Windows: PingBot.py , however on windows you will need the cmd prompt open at all times to keep the script running.
+# Windows: PingBot.py, you will need the cmd prompt open at all times to keep the script running.
 #
-# Linux: Run with: chmod +x PingBot.py && ./PingBot.py & >>/dev/null ,  to run as deamon, or just ./PingBot.py 
+# Linux: ./PingBot.py, probably best off putting it inside a tmux session.
 
 
 import os
