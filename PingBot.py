@@ -43,21 +43,29 @@ try:
             response = os.system('ping -n 1 <Server Name> 2>&1>nul')
             time.sleep(5)
             if response != 0:
-                client = TwilioRestClient(ACCSID, AUTHTOK)
-                client.messages.create( body="Server is Down", to="<Your Phone Num>", from_="<Twilio Phone Num>")
+                time.sleep(10)
+                response = os.system('ping -n 1 <Server Name> 2>&1>nul')
                 time.sleep(5)
-                sys.exit(0)
+                if response != 0:
+                    client = TwilioRestClient(ACCSID, AUTHTOK)
+                    client.messages.create( body="Server is Down", to="<Your Phone Num>", from_="<Twilio Phone Num>")
+                    time.sleep(5)
+                    sys.exit(0)
 
     else:
-        while 1:
+         while 1:
             time.sleep(20)
-            response = os.system('ping -n 1 <Server Name> 2>&1>nul')
+            response = os.system('ping -t 1 <Server Name> >>/dev/null')
             time.sleep(5)
             if response != 0:
-                client = TwilioRestClient(ACCSID, AUTHTOK)
-                client.messages.create( body="Server is Down", to="<Your Phone Num>", from_="<Twilio Phone Num>")
+                time.sleep(10)
+                response = os.system('ping -t 1 <Server Name> >>/dev/null')
                 time.sleep(5)
-                sys.exit(0)
+                if response != 0:
+                    client = TwilioRestClient(ACCSID, AUTHTOK)
+                    client.messages.create( body="Server is Down", to="<Your Phone Num>", from_="<Twilio Phone Num>")
+                    time.sleep(5)
+                    sys.exit(0)
 
 except KeyboardInterrupt:
     print ("Exiting...")
