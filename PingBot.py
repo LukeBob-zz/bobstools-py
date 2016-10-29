@@ -45,7 +45,7 @@ try:
             if response != 0:
                 client = TwilioRestClient(ACCSID, AUTHTOK)
                 client.messages.create( body="Server is Down", to="<Your Phone Num>", from_="<Twilio Phone Num>")
-                time.sleep(10)
+                time.sleep(5)
                 sys.exit(0)
 
     else:
@@ -56,7 +56,7 @@ try:
             if response != 0:
                 client = TwilioRestClient(ACCSID, AUTHTOK)
                 client.messages.create( body="Server is Down", to="<Your Phone Num>", from_="<Twilio Phone Num>")
-                time.sleep(10)
+                time.sleep(5)
                 sys.exit(0)
 
 except KeyboardInterrupt:
