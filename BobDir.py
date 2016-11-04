@@ -16,6 +16,7 @@ import time
 import subprocess
 import threading
 from threading import Thread
+import readline
 
 class colors:
     OKGREEN = '\033[92m'
