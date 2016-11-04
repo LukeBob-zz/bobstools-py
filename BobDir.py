@@ -25,8 +25,6 @@ class colors:
     UNDERLINE = '\033[4m'
     OKBLUE = '\033[94m'
 
-list1 = []
-list2 = []
 MAX_THREADS = 20
 subprocess.call('clear', shell=True)
 smallSplit = colors.BOLD + colors.OKBLUE + '============================' + colors.ENDC
