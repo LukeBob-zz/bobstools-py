@@ -31,7 +31,7 @@ def main():
 
     for gzFile in sorted(glob.glob('/var/log/*.gz')):
         print "Removing: " + gzFile
-        time.sleep(0.5)
+        time.sleep(0.3)
         remove(gzFile)
         count = count+1
     print '\n'
