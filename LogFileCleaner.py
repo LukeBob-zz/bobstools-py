@@ -1,4 +1,8 @@
 #!/usr/bin/python
+#
+# Author LukeBob
+#
+# Clears all files it finds that you specify.
 
 import os.path
 import glob, os, sys
