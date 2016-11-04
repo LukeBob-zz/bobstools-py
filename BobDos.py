@@ -12,7 +12,7 @@ import sys, traceback
 import socket
 import random
 import sys
-import readlines
+import readline
 
 MAX_THREADS = 50
 
