@@ -66,8 +66,10 @@ try:
         print colors.BOLD + colors.OKBLUE + "Wordlist", colors.ENDC + colors.BOLD + "==> ", colors.BOLD + colors.OKGREEN + files + colors.ENDC
         print '\n'
         host = str(raw_input(colors.BOLD + "Host: " + colors.ENDC))
+        
         if host == "":
             usage()
+            
         print ""
         print colors.BOLD + colors.OKBLUE + "Host", colors.ENDC + colors.BOLD + "==> ", colors.OKGREEN + host + colors.ENDC
         print ""
@@ -77,24 +79,15 @@ try:
         numlines = sum(1 for line in open(files))
         half = numlines / 4           
         splitLen = half        
-        outputBase = 'output' 
-
-       
-        
+        outputBase = 'output'                
         input = open(files, 'r').read().split('\n')
-
         at = 1
-        for lines in range(0, len(input), splitLen):
-          
-            outputData = input[lines:lines+splitLen]
-
-       
-          
+        
+        for lines in range(0, len(input), splitLen):          
+            outputData = input[lines:lines+splitLen]                 
             output = open(outputBase + str(at) + '.txt', 'w')
             output.write('\n'.join(outputData))
             output.close()
-
-        
             at += 1                   
 
     if 'http' in host:
@@ -115,9 +108,7 @@ try:
     #               #
     #################''' + colors.ENDC
     print '\n'
-    print smallSplit
-    
-   
+    print smallSplit       
     out1 = open('output1.txt')
     out2 = open('output2.txt')
     out3 = open('output3.txt')
@@ -146,9 +137,7 @@ try:
                     time.sleep(10)
         except:
             pass
-                
-
-    
+                    
     def thready2():
         try:
             for i in out2.readlines():
@@ -235,7 +224,6 @@ try:
             thread2.start()
             thread3.start()
             thread4.start()
-          
             
         except KeyboardInterrupt:
             print '\n'
@@ -246,11 +234,12 @@ try:
         except Exception:
             traceback.print_exc(file=sys.stdout)
         sys.exit(0)
-   
+        
     t2 = datetime.now()
     total = t2 - t1 
     print "complete in: ", total
     subprocess.call('rm output*.txt', shell=True)
+    
 except KeyboardInterrupt:
     print '\n'
     print smallSplit 
