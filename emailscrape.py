@@ -26,7 +26,7 @@ class Connect:
 
 
 def newsstrip(text):
-    Emails = re.findall(r'([\w.]+@[\w.]+)', text)
+    Emails = re.findall(r'[\w.]+@[\w.]+', text)
     if Emails:
         print ('\n')
         for email in Emails:
