@@ -20,17 +20,15 @@ class url:
             return 'New-url: {}'.format(self.shortener.short(self.url))
         except ValueError:
             print '\n Please Enter Valid Url \n'
- 
-def usage():
-    print ('\n ./tinyurl.py <url>\n') 
-    sys.exit(0)   
-        
+            
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('url', help='The url you wish to shorten.', type=str)
     args = parser.parse_args()
+    
     print '\n         Tiny-url   '
     print ('\n'+split+'\nOld-url: '+(args.url)+'\n'+split)
+    
     newurl = (args.url)
     nurl = url(newurl)
     print ('\n'+split+'\n'+nurl.Shrink()+'\n'+split)
