@@ -45,8 +45,8 @@ def modules(mod):
         
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--url','-u', help='The url you wish to shorten.', type=str)
-    parser.add_argument('--module','-m', help='Module you wish to use.', type=str)
+    parser.add_argument('-u','--url', help='The url you wish to shorten.', type=str)
+    parser.add_argument('-m','--module', help='Module you wish to use.', type=str)
     parser.add_argument('--module-list', help='List of all current modules.', action="store_true")
     args = parser.parse_args()
 
