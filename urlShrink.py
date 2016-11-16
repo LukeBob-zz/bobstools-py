@@ -1,4 +1,7 @@
 #!/usr/bin/python
+#
+# Author: LukeBob
+# Requires pyshorteners library.
 
 from pyshorteners import Shortener
 import sys
@@ -18,7 +21,6 @@ class url:
             return 'New-url: {}'.format(self.shortener.short(self.url))
         except ValueError:
             print '\n Please Enter Valid Url \n'
- 
 
 def argList():
     print '\nURL-MODULES\n'
