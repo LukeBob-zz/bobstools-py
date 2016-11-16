@@ -3,8 +3,6 @@
 # Author: LukeBob
 # Requires pyshorteners library.
 
-#!/usr/bin/python
-
 from pyshorteners import Shortener
 import sys
 import argparse
