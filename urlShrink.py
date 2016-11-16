@@ -21,7 +21,7 @@ class url:
             return 'New-url: {}'.format(self.shortener.short(self.url))
         except ValueError:
             print '\n Please Enter Valid Url \n'
-
+            sys.exit(0)
 def argList():
     print '\nURL-MODULES\n'
     for module in modList:
