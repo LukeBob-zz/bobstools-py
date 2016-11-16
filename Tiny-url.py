@@ -1,8 +1,8 @@
 #!/usr/bin/python
 #
 # Author: LukeBob
-#
 # Requires pyshortners library.
+# Usage: ./tinyurl.py <url>
 
 from pyshorteners import Shortener
 import sys
