@@ -3,18 +3,20 @@
 # Author: LukeBob
 # Requires pyshorteners library.
 
+#!/usr/bin/python
+
 from pyshorteners import Shortener
 import sys
 import argparse
 
 split = '==================================='
-modList = ['tinyurl','isgd','sentala','qrcx','readbility']
+modList = ['tinyurl','isgd','qrcx','osdb']
 
 class url:
-    def __init__(self,url,module):
+    def __init__(self,url,modulee):
         self.url = url
-        self.module = module
-        self.shortener = Shortener(module)
+        self.modulee = modulee
+        self.shortener = Shortener(self.modulee)
         
     def Shrink(self): 
         try:   
@@ -22,28 +24,26 @@ class url:
         except ValueError:
             print '\n Please Enter Valid Url \n'
             sys.exit(0)
+
 def argList():
     print '\nURL-MODULES\n'
-    for module in modList:
-        print ' '+module
+    for modulee in modList:
+        print ' '+modulee
     sys.exit(0)
 
 def modules(mod):
     
     if mod not in modList:
         argList()
-
+    
+    if mod == 'osdb':
+        return 'Osdb'
     if mod == 'tinyurl':
         return 'Tinyurl'
     elif mod == 'isgd':
         return 'Isgd' 
-    elif mod == 'sentala':
-        return 'Sentala'
     elif mod == 'qrcx':
-        return 'QrCx'
-    elif mod == 'readbility':
-        return 'Readbility'
-    
+        return 'QrCx'   
         
 def main():
     parser = argparse.ArgumentParser()
@@ -56,11 +56,11 @@ def main():
         argList()
 
     if args.module:
-        module = modules(args.module)
-        
+        modulee = modules(args.module)
+          
     print ('\n'+split+'\nOld-url: '+(args.url)+'\n'+split)
     newurl = (args.url)
-    nurl = url(newurl,module)
+    nurl = url(newurl,modulee)
     print ('\n'+split+'\n'+nurl.Shrink()+'\n'+split)
 
 if __name__ == '__main__':
