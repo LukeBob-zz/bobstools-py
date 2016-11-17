@@ -1,7 +1,11 @@
 #!/usr/bin/python
 #
 # Author: LukeBob
+#
 # Requires pyshorteners library.
+# Usage: ./urlShrink -u <url> -m <module>
+# if your not sure about the modules, --module-list will give you a list of modules available, -h or --help for help
+                                                                       
 
 from pyshorteners import Shortener
 import sys
