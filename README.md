@@ -11,13 +11,26 @@ experiment kali python gui for making a few tasks simple
 
 * ```./bobstool.py```
 
-## BobDos Setup ##
+## LogFileCleaner.py 
+Does Exactly what it says on the tin, cleans log dirs.
 
-* ```chmod 755 BobDos.py```
+## LogFileCleaner setup ##
 
-**then run it with;**
+* ```chmod +x LogFileCleaner.py```
 
-* ```./BobDos.py <Target-host> <start-Port> <end-port>```
+then edit the script and point it at your log dir, and execute.
 
-**the ports are Specified for the portscan before the actual attack, this gives us a list of open ports. You DON'T need to give ports.**
+* ```./LogFileCleaner.py```
+
+## EmailScrape.py ##
+Pulls down emails from url-list.
+
+## EmailScrape example ##
+edit the script and insert your url's into the url list like so.
+
+* ```urlList = ['http://your-url.com','https://your-url2.com']```
+
+then run with
+
+* ``` ./EmailScrape.py```
 
