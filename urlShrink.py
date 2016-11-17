@@ -22,6 +22,9 @@ class url:
         except ValueError:
             print '\n Please Enter Valid Url \n'
             sys.exit(0)
+        except requests.exceptions.ReadTimeout:
+            print '\n Problem Connecting to host: '+self.url
+            sys.exit(0)
 
 def argList():
     print '\nURL-MODULES\n'
@@ -41,7 +44,7 @@ def modules(mod):
     elif mod == 'isgd':
         return 'Isgd' 
     elif mod == 'qrcx':
-        return 'QrCx'   
+        return 'QrCx'
         
 def main():
     parser = argparse.ArgumentParser()
@@ -55,7 +58,8 @@ def main():
 
     if args.module:
         modulee = modules(args.module)
-          
+  
+        
     print ('\n'+split+'\nOld-url: '+(args.url)+'\n'+split)
     newurl = (args.url)
     nurl = url(newurl,modulee)
