@@ -30,7 +30,7 @@ class url:
             sys.exit(0)
 
 def usage():
-    print '\n./linkShrink -u <url> -m <module>\n'
+    print '\nusage: ./linkShrink -u <url> -m <module> -h <help>\n'
     sys.exit(0)
 
 def argList():
