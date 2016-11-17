@@ -11,10 +11,10 @@ experiment kali python gui for making a few tasks simple
 
 * ```./bobstool.py```
 
-## LogFileCleaner.py 
+# LogFileCleaner.py 
 **Does Exactly what it says on the tin, cleans log dirs.**
 
-# LogFileCleaner setup 
+## LogFileCleaner setup ##
 
 * ```chmod +x LogFileCleaner.py```
 
@@ -22,7 +22,7 @@ experiment kali python gui for making a few tasks simple
 
 * ```./LogFileCleaner.py```
 
-## EmailScrape.py ##
+# EmailScrape.py 
 **Pulls down emails from url-list.**
 
 ## EmailScrape example ##
