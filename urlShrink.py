@@ -35,6 +35,7 @@ def argList():
 def modules(mod):
     
     if mod not in modList:
+        print '\n Module Not Found!\n'
         argList()
     
     if mod == 'osdb':
