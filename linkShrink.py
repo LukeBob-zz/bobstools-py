@@ -6,7 +6,6 @@
 # Usage: ./linkShrink -u <url> -m <module>
 # if your not sure about the modules, --module-list will give you a list of modules available, -h or --help for help
                                                                        
-
 from pyshorteners import Shortener
 import sys
 import argparse
@@ -30,6 +29,10 @@ class url:
             print '\n Problem Connecting to host: '+self.url
             sys.exit(0)
 
+def usage():
+    print '\n./linkShrink -u <url> -m <module>\n'
+    sys.exit(0)
+
 def argList():
     print '\nURL-MODULES\n'
     for modulee in modList:
@@ -50,23 +53,28 @@ def modules(mod):
         return 'Isgd' 
     elif mod == 'qrcx':
         return 'QrCx'
-        
+            
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-u','--url', help='The url you wish to shorten.', type=str)
     parser.add_argument('-m','--module', help='Module you wish to use.', type=str)
     parser.add_argument('--module-list', help='List of all current modules.', action="store_true")
     args = parser.parse_args()
+    if len(sys.argv) < 2:
+        usage()
 
     if args.module_list:
         argList()
 
     if args.module:
-        modulee = modules(args.module)      
-    print ('\n'+split+'\nOld-url: '+(args.url)+'\n'+split)
-    newurl = (args.url)
-    nurl = url(newurl,modulee)
-    print ('\n'+split+'\n'+nurl.Shrink()+'\n'+split)
+        modulee = modules(args.module)               
+    try:
+        newurl = (args.url)
+        nurl = url(newurl,modulee)
+        print ('\n'+split+'\nOld-url: '+(args.url)+'\n'+split)
+        print ('\n'+split+'\n'+nurl.Shrink()+'\n'+split)
+    except UnboundLocalError:
+        usage()   
 
 if __name__ == '__main__':
     main()
