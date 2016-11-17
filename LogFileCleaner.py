@@ -29,7 +29,7 @@ def main():
         print split
         sys.exit(0)
 
-    for gzFile in sorted(glob.glob('/var/log/*.gz')):
+    for gzFile in sorted(glob.glob(logDir)):
         print "Removing: " + gzFile
         time.sleep(0.3)
         remove(gzFile)
