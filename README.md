@@ -14,7 +14,7 @@ experiment kali python gui for making a few tasks simple
 ## LogFileCleaner.py 
 **Does Exactly what it says on the tin, cleans log dirs.**
 
-## LogFileCleaner setup ##
+# LogFileCleaner setup 
 
 * ```chmod +x LogFileCleaner.py```
 
