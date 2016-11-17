@@ -58,9 +58,7 @@ def main():
         argList()
 
     if args.module:
-        modulee = modules(args.module)
-  
-        
+        modulee = modules(args.module)      
     print ('\n'+split+'\nOld-url: '+(args.url)+'\n'+split)
     newurl = (args.url)
     nurl = url(newurl,modulee)
