@@ -10,7 +10,7 @@ import sys, random
 import string
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-from scapy.all import IPv6,ICMPv6ND_RA,ICMPv6NDOptSrcLLAddr,ICMPv6NDOptMTU,ICMPv6NDOptPrefixInfo, send
+from scapy.all import IPv6,ICMPv6ND_RA,ICMPv6NDOptSrcLLAddr,ICMPv6NDOptMTU,ICMPv6NDOptPrefixInfo,send
 
 
 def banner():
