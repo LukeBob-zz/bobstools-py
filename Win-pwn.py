@@ -3,8 +3,10 @@
 # Author: LukeBob
 #
 # ipv6 Stress Tool
-#
+# Usage: ./Win-pwn.py
 # Works on some older unix systems, works best with "windows 7" or older
+# Sends 1000 random ipv6 addresses to all nodes. "ALL NODES!"
+# Carefull, use at your own risk!
 
 import sys, random
 import string
