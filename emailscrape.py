@@ -10,8 +10,6 @@ import time
 split = '===================================================='
 smlli = '==============='
 smll = '====='
-
-
 urlList = ['http://localhost',] # URL list
 
 class Connect:
@@ -24,15 +22,13 @@ class Connect:
         newSoup =  soup.prettify()
         newsstrip(newSoup)
 
-
 def newsstrip(text):
     Emails = re.findall(r'[\w.]+@[\w.]+', text)
     if Emails:
         print ('\n')
         for email in Emails:
             print (email)
-            time.sleep(0.05)
-        
+            time.sleep(0.05)    
     else:
         print ('\nNo Emails Found!..\n')
 
