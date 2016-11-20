@@ -60,7 +60,7 @@ def main():
                 prefix = prefixi()
                 newmac = randomMAC()
                 Multicast(newmac,prefix)
-            print '\n   1000 New Addresses new Leased! ;P\n'
+            print '\n   1000 New Addresses Leased! ;P\n'
             sys.exit(0)
     except KeyboardInterrupt:
         print '\nExiting!...\n'
