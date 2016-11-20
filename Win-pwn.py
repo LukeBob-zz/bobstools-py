@@ -40,8 +40,8 @@ def prefixi():
 
 
 def Multicast(newmac, prefix):
-    a = IPv6()
-    a.dst = "ff02::1"
+    a = IPv6()                  # create ipv6 object
+    a.dst = "ff02::1"           # dest addr = ipv6 multicast to all nodes
     b = ICMPv6ND_RA()
     c = ICMPv6NDOptSrcLLAddr()
     c.lladdr = newmac
