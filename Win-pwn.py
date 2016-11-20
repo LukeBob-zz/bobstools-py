@@ -25,7 +25,7 @@ def banner():
           \_/\_/ |_|_| |_|   | .__/ \_/\_/ |_| |_|
                              | |
                              |_|
-          ''')
+          \n''')
     return
 
 # Creates random mac #
