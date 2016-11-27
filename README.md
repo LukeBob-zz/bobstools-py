@@ -34,3 +34,26 @@ experiment kali python gui for making a few tasks simple
 
 * ``` ./EmailScrape.py```
 
+# Win-Pwn
+
+**Multicast Ipv6 Packets to all nodes on the network making them join over a thousand new fake addresses. Serverly Affects Windows-7 machines and earlier, running there cpu usage upto 100% and will sit at that usage for sometimes hours, making the making the device unresponsive**
+
+**Warning Do NOT use on any network that hasnt been setup specifically for testing purposes**
+
+**Run**
+
+    $ python Win-pwn.py
+    
+    
+    ./Win-pwn.py 
+
+                  _
+                 (_)
+        __      ___ _ __      _ ____      ___ __
+        \ \ /\ / | | '_ \    | '_ \ \ /\ / | '_ \
+         \ V  V /| | | | |   | |_) \ V  V /| | | |
+          \_/\_/ |_|_| |_|   | .__/ \_/\_/ |_| |_|
+                             | |
+                             |_|         
+
+          Breaking all windows now...
