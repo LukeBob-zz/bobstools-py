@@ -57,3 +57,11 @@ experiment kali python gui for making a few tasks simple
                              |_|         
 
           Breaking all windows now...
+
+# Bob-Dir
+
+**Bob dir, http directory bruteforcer written in python needs a wordlist and a host**
+
+**To run**
+
+    $ python Bob-Dir.py  
