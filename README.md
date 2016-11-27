@@ -79,7 +79,7 @@ experiment kali python gui for making a few tasks simple
 
      ==================================================================================
       Usage:  wordlist: /usr/share/wordlists/dirbuster/directory-list-1.0.txt
-      Host: localhost  |  http://localhost.co.uk
+                  Host: http://localhost.co.uk
      ==================================================================================
      
      $
