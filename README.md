@@ -40,7 +40,7 @@ experiment kali python gui for making a few tasks simple
 
 **Warning Do NOT use on any network that hasnt been setup specifically for testing purposes**
 
-**Run**
+**Run With**
 
     $ python Win-pwn.py
     
