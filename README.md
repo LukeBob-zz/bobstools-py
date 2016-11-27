@@ -64,4 +64,23 @@ experiment kali python gui for making a few tasks simple
 
 **To run**
 
-    $ python Bob-Dir.py  
+    $ python Bob-Dir.py 
+    
+    
+          #########################################################
+          #                                                       #
+          #                   Bob's Directory Buster              #
+          #                                                       #
+          #########################################################
+
+
+     Wordlist: 
+
+
+     ==================================================================================
+     Usage:  wordlist: /usr/share/wordlists/dirbuster/directory-list-1.0.txt
+      Host: localhost  |  http://localhost.co.uk
+     ==================================================================================
+     
+     $
+
