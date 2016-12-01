@@ -35,8 +35,7 @@ def newsstrip(text):
 def main():
     for url in urlList:          
         print (split+'\n'+url+'\n'+split)      
-        connection = Connect(url)
-        connection.run()
+        connection = Connect(url).run()
     print ('\n'+smll+'\nDone\n'+smll) 
 
 if __name__ == '__main__':
