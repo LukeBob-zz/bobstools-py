@@ -1,8 +1,6 @@
 
 #!/usr/bin/env python3
-
 ## Author: LukeBob
-
 import os
 
 dur_list = []
@@ -28,13 +26,11 @@ def list_files(startpath):
                 dur_list.append(dur)
                 file_list.append(f)
 
-
 def main():
     a=0
     list_files('/var/log/')
     for file in file_list:
         a=a+1
-
 
     print('Found: {} Files\n'.format(str(a)))
     if a > 1:
