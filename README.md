@@ -11,17 +11,6 @@ experiment kali python gui for making a few tasks simple
 
 * ```./bobstool.py```
 
-# LogFileCleaner.py 
-**Does Exactly what it says on the tin, cleans log dirs.**
-
-## LogFileCleaner setup ##
-
-* ```chmod +x LogFileCleaner.py```
-
-**then edit the script and point it at your log dir, and execute.**
-
-* ```./LogFileCleaner.py```
-
 # EmailScrape.py 
 **Pulls down emails from url-list.**
 
