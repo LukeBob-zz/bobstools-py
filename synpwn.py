@@ -5,7 +5,12 @@
 # Uses the shodan library to find the targets running synology and runs specified command given in --cmd param
 # use, "python3 synpwn.py" -h ,for more help
 # For more information on the exploit visit: https://www.exploit-db.com/exploits/43190/
- 
+#
+# Note THIS SCRIPT CAN GET YOU IN ALOT OF TROUBLE, PROBABLY NOT WORTH THE HASTLE, ANYTHING YOU DO WITH THIS SCRIPT IS ON YOU'R BEHALF,
+# AND YOUR'S ALONE!
+#
+# READ ^^^
+
 import requests
 import argparse
 import shodan
