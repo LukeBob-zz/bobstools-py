@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # Author: LukeBob
 #
+# Requires: argparse, shodan, requests pip install them if needed.
+# Run with: python3 synPwn.py --key <Shodan API Key> --cmd "<Command to try and execute>"
+#
 # python3 script for testing the (Synology StorageManager 5.2 - Root Remote Command Execution) exploit found by, (Weibo: SecuriTeam_SSD Twitter: @SecuriTeam_SSD)
 # Uses the shodan library to find the targets running synology and runs specified command given in --cmd param
 # use, "python3 synpwn.py" -h ,for more help
